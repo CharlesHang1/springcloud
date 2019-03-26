@@ -1,0 +1,11 @@
+server:
+  port: 8088
+  
+feign: 
+  hystrix: 
+    enabled: true
+eureka:
+  client:
+    register-with-eureka: false
+    service-url: 
+      defaultZone: http://139.199.9.108:7001/eureka/,http://139.199.9.108:7002/eureka/  

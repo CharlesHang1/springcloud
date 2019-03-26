@@ -1,0 +1,35 @@
+server: 
+  port: 9527
+ 
+spring: 
+  application:
+    name: microservicecloud-zuul-gateway
+ 
+eureka: 
+  client: 
+    service-url: 
+      defaultZone: http://139.199.9.108:7001/eureka/,http://139.199.9.108:7002/eureka/
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true 
+ 
+ 
+zuul: 
+  #ignored-services: microservicecloud-dept
+  prefix: /hang
+  ignored-services: "*"
+  # 将服务名映射
+  routes: 
+    mydept.serviceId: microservicecloud-dept
+    mydept.path: /mydept/**
+ 
+info:
+  app.name: hang-microcloud
+  company.name: www.hang.com
+  build.artifactId: microservicecloud-zuul-gateway-9527
+  build.version: 0.0.1-SNAPSHOT
+  
+  
+ #访问  http://localhost:9527/microservicecloud-dept/dept/list
+ #需要小写
+

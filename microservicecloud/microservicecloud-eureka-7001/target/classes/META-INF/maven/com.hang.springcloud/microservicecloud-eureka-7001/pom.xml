@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.hang.springcloud</groupId>
+    <artifactId>microservicecloud</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>microservicecloud-eureka-7001</artifactId>
+  <packaging>jar</packaging>
+  <dependencies>
+  		
+			
+		 <!-- 加上外部tomcat部署項目的配置 -->
+		 <!--
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			排除内置容器，排除内置容器导出成war包可以让外部容器运行spring-boot项目 
+			<exclusions>
+				<exclusion>
+					 <groupId>org.springframework.boot</groupId>  
+                     <artifactId>spring-boot-starter-tomcat</artifactId> 
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			 <groupId>org.springframework.boot</groupId>  
+             <artifactId>spring-boot-starter-tomcat</artifactId> 
+             <scope>provided</scope>
+		</dependency> -->
+
+
+		<!--eureka-server服务端 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+		</dependency>
+		<!-- 修改后立即生效，热部署 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>springloaded</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+					<mainClass>com.hang.springcloud.EurekaServer7001_App</mainClass>
+					<layout>ZIP</layout>
+					
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<!-- 分离出代码包
+						<configuration>
+							<classifier>exec</classifier>
+						</configuration>
+						 -->
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
